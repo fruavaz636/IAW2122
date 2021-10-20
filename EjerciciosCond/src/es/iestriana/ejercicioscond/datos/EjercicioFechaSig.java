@@ -23,7 +23,9 @@ public class EjercicioFechaSig {
 		// Suponer que la fecha es correcta
 		
 		// Averiguar los días del mes
+		
 		int diasdelmes = 0;
+		
 		switch (mes) {
 		case 2:
 			diasdelmes = 28;
@@ -50,6 +52,17 @@ public class EjercicioFechaSig {
 		//dia = dia + 1;
 		//dia += 1;
 		dia++;
+		
+		if (dia > diasdelmes) {
+			dia = 1;
+			mes++;
+			if (mes > 12) {
+				mes = 1;
+				anyo++;
+			}
+		}
+		
+		System.out.println("Fecha Nueva: " + dia + "/" + mes + "/" + anyo);
 		
 		sc.close();
 	}
