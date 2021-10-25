@@ -18,6 +18,26 @@ public class Ejercicio2 {
 			cantidadNumeros = sc.nextInt();
 		} while (cantidadNumeros <= 0);
 		
+		int orden = comprobarOrden(cantidadNumeros);
+		
+		switch (orden) {
+			case 0:
+				System.out.println("DESORDENADO");
+				break;
+			case -1:
+				System.out.println("DECRECIENTE");
+				break;
+			case 1:
+				System.out.println("CRECIENTE");
+				break;
+			default:
+				break;
+		}
+		
+		sc.close();
+	}
+
+	private static int comprobarOrden(int cantidadNumeros) {
 		int numero = 0, auxiliar = 0;
 		boolean creciente = false, decreciente = false;
 		
@@ -38,14 +58,12 @@ public class Ejercicio2 {
 		}
 		
 		if (creciente && decreciente) {
-			System.out.println("DESORDENADOS");
+			return 0;
 		} else if (creciente && !decreciente) {
-			System.out.println("CRECIENTE");
+			return 1;
 		} else {
-			System.out.println("DECRECIENTE");
+			return -1;
 		}
-		
-		sc.close();
 	}
 
 }
