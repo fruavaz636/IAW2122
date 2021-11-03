@@ -1,5 +1,6 @@
 package es.ejerciciostablas.datos;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class Explicacion {
 		int [] numeros = new int[10];
 		
 		// Multidimensionales
-		float [][] temperaturas = new float[2][3];
+		float [][] temperaturas = new float[5][6];
 		
 		int [] datos = {1,2,3,4,5};
 		System.out.println(datos.length);
@@ -49,7 +50,27 @@ public class Explicacion {
 		
 		System.out.println("El número " + buscado + 
 				" se repite en la tabla " + veces + " veces");
+
+		for (int i = 0; i < cadenas.length; i++) {
+			for (int j = 0; j < cadenas[i].length; j++) {
+				System.out.println(cadenas[i][j]);
+			}
+		}
+
+		for (int i = 0; i < temperaturas.length; i++) {
+			for (int j = 0; j < temperaturas[i].length; j++) {
+				System.out.print("(" + i + "," + j + ") ");				
+			}
+			System.out.println();
+		}
 		
+		System.out.println(Arrays.toString(numeros));
+		Arrays.sort(numeros);
+		System.out.println(Arrays.toString(numeros));
+		//Arrays.fill(numeros, 0);
+		Arrays.binarySearch(numeros, 3);
+		int [] auxiliar = Arrays.copyOf(numeros, 14);
+		System.out.println(Arrays.toString(auxiliar));
 		sc.close();
 	}
 
