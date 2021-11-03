@@ -35,7 +35,7 @@ public class Ejercicio8 {
 	private static boolean esPrimo(int i) {
 		boolean primo = true;
 		
-		for (int j = 2; j < i; j++) {
+		for (int j = 2; j < i && primo; j++) {
 			if (i%j==0) {
 				primo = false;
 			}
