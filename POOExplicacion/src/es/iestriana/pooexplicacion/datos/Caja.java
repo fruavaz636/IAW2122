@@ -1,5 +1,7 @@
 package es.iestriana.pooexplicacion.datos;
 
+import java.util.Objects;
+
 public class Caja {
 
 	// Atributos
@@ -59,4 +61,25 @@ public class Caja {
 	public double obtenerVolumen() {
 		return (ancho * largo * alto);
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(alto, ancho, largo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Caja other = (Caja) obj;
+		return Double.doubleToLongBits(alto) == Double.doubleToLongBits(other.alto)
+				&& Double.doubleToLongBits(ancho) == Double.doubleToLongBits(other.ancho)
+				&& Double.doubleToLongBits(largo) == Double.doubleToLongBits(other.largo);
+	}
+	
+	
 }
