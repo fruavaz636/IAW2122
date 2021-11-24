@@ -1,5 +1,7 @@
 package es.iestriana.poo.datos;
 
+import java.util.Random;
+
 public class Garaje {
 	
 	private Coche coche;
@@ -17,5 +19,15 @@ public class Garaje {
 				this.coche.getMotor().setLitros(this.coche.getMotor().getLitros()+10);
 			}
 		}
+		
+		this.coche.acumularAveria(new Random().nextDouble()*100);
+		
+		numeroCochesAtendidos++;
+		
+		return true;
+	}
+	
+	public void devolverCoche() {
+		this.coche = null;
 	}
 }
