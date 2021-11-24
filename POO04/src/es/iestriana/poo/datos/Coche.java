@@ -11,6 +11,7 @@ public class Coche {
 		super();
 		this.marca = marca;
 		this.modelo = modelo;
+		this.motor = new Motor();
 	}
 
 	public Motor getMotor() {

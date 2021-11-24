@@ -5,6 +5,10 @@ public class Motor {
 	private int litros;
 	private int cv;
 	
+	public Motor() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Motor(int cv) {
 		this.cv = cv;
 	}
