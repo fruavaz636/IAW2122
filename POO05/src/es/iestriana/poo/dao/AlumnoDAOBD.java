@@ -28,4 +28,24 @@ public class AlumnoDAOBD implements AlumnoDAO {
 		
 	}
 
+	@Override
+	public void borrarTodos() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Alumno cambiarNota(Alumno a, float nuevaNota) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void mostrarTodos() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
 }

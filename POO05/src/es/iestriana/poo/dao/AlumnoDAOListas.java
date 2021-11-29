@@ -34,14 +34,46 @@ public class AlumnoDAOListas implements AlumnoDAO {
 
 	@Override
 	public Alumno buscarPorEdad(int edad) {
-		// TODO Auto-generated method stub
+		for (Alumno a : alumnos) {
+			if (a.getEdad() == edad) {
+				return a;
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public void borrar(String nombre, String apellidos) {
-		// TODO Auto-generated method stub
+		for (int i = 0; i < alumnos.size(); i++) {
+			if (alumnos.get(i).getNombre().equalsIgnoreCase(nombre) && 
+					alumnos.get(i).getApellidos().equalsIgnoreCase(apellidos)) {
+				alumnos.remove(i);
+			}
+		}
 		
+	}
+
+	@Override
+	public void borrarTodos() {
+		alumnos.clear();
+	}
+
+	@Override
+	public Alumno cambiarNota(Alumno a, float nuevaNota) {
+		for (Alumno alum : alumnos) {
+			if (alum.equals(a)) {
+				alum.setNota_expediente(nuevaNota);
+				return alum;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void mostrarTodos() {
+		for (Alumno a : alumnos) {
+			System.out.println(a);
+		}
 	}
 
 }

@@ -1,6 +1,7 @@
 package es.iestriana.poo.bean;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Alumno implements Serializable {
 
@@ -58,5 +59,25 @@ public class Alumno implements Serializable {
 	public String toString() {
 		return "Alumno [nombre=" + nombre + ", apellidos=" + apellidos + ", edad=" + edad + ", nota_expediente="
 				+ nota_expediente + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellidos, edad, nombre, nota_expediente);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alumno other = (Alumno) obj;
+		return Objects.equals(apellidos, other.apellidos) && edad == other.edad && Objects.equals(nombre, other.nombre)
+				&& Float.floatToIntBits(nota_expediente) == Float.floatToIntBits(other.nota_expediente);
 	}	
+	
+	
 }
