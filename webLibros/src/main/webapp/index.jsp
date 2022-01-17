@@ -27,6 +27,18 @@
 				  <button type="submit" class="btn btn-primary">Entrar</button>
 				  <button type="button" class="btn btn-secondary m-3">Registrar</button>
 				</form>
+				
+				<%
+				String mensaje = request.getParameter("mensaje");
+				if (mensaje != null) {
+				%>
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				  <strong>Error!!!</strong> <% out.print(mensaje); %> <%=mensaje %> 
+				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				<%
+				}
+				%>
     		</div>
     	</div>
     </div>
