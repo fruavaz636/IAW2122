@@ -56,7 +56,12 @@ public class RegistrarUsuario extends HttpServlet {
 		UsuarioDAO uDAO = new UsuarioDAOBD();
 		
 		if (!uDAO.buscarLogin(login, con)) {
-			
+			int filas = uDAO.insertarUsuario(usuario, con);
+			if (filas == 1) {
+				response.sendRedirect("jsp/registrar.jsp?mensaje=Usuario registrado correctamente");				
+			} else {
+				response.sendRedirect("jsp/registrar.jsp?mensaje=Error al registrar al usuario");
+			}
 		} else {
 			response.sendRedirect("jsp/registrar.jsp?mensaje=Login registrado en la BD");
 		}
