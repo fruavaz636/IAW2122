@@ -21,6 +21,10 @@ public class Conexion {
 		}
 	}
 	
+	public Connection getConector() {
+		return conector;
+	}
+	
 	public void cerrarConexion() {
 		try {
 			conector.close();
