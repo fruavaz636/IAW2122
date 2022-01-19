@@ -15,7 +15,7 @@
 		<div class="row">
 			<div class="col">
 				<h2>Registrar Usuario</h2>
-				<form>
+				<form method="post" action="../RegistrarUsuario">
 				  <div class="mb-3">
 				    <label for="login" class="form-label">Login</label>
 				    <input type="text" class="form-control" id="login" name="login" aria-describedby="loginHelp" autofocus="autofocus" required="required">				    
