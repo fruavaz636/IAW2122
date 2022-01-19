@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>WEB LIBROS</title>
   </head>
   <body>
     <div class="container">
@@ -25,7 +25,7 @@
 				    <input type="password" class="form-control" id="password" name="password" required="required">
 				  </div>
 				  <button type="submit" class="btn btn-primary">Entrar</button>
-				  <button type="button" class="btn btn-secondary m-3">Registrar</button>
+				  <button type="button" class="btn btn-secondary m-3" onclick="location.href='jsp/registrar.jsp'">Registrar</button>
 				</form>
 				
 				<%
