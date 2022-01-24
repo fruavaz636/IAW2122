@@ -7,7 +7,7 @@
   
   <context-param>
   	<param-name>usuario</param-name>
-  	<param-value>root</param-value>
+  	<param-value>usuario</param-value>
   </context-param>
   
   <context-param>
@@ -17,7 +17,7 @@
   
   <context-param>
   	<param-name>database</param-name>
-  	<param-value>jdbc:mysql://localhost:3306/bdlibros?useSSL=false</param-value>
+  	<param-value>jdbc:mysql://localhost:3306/bdlibros</param-value>
   </context-param>
   
   <context-param>
