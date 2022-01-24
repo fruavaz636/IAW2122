@@ -1,10 +1,17 @@
 package es.iestriana.controller;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import es.iestriana.bean.Conexion;
+import es.iestriana.bean.Usuario;
+import es.iestriana.dao.UsuarioDAO;
+import es.iestriana.dao.UsuarioDAOBD;
 
 /**
  * Servlet implementation class ValidarUsuario
@@ -34,9 +41,20 @@ public class ValidarUsuario extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
 		
+		ServletContext sc = getServletContext();
+		String usu = sc.getInitParameter("usuario");
+		String pass = sc.getInitParameter("password");
+		String bd = sc.getInitParameter("database");
+		String driver = sc.getInitParameter("driver");
+		
+		Conexion con = new Conexion(usu, pass, bd, driver);
+		
+		UsuarioDAO uDAO = new UsuarioDAOBD();
+		
+		Usuario usuWeb = uDAO.comprobarUsuario(usuario, password, con);
+		
 		// Comprobar la validez del usuario
-		if (usuario.equalsIgnoreCase("yo") 
-				&& password.equalsIgnoreCase("1234")) {
+		if (usuWeb != null) {
 			response.sendRedirect("principal.jsp");
 		} else {
 			response.sendRedirect("index.jsp?mensaje=Usuario y/o Password Incorrecto");

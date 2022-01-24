@@ -56,4 +56,34 @@ public class UsuarioDAOBD implements UsuarioDAO {
 		return filas;
 	}
 
+	@Override
+	public Usuario comprobarUsuario(String usuario, String password, Conexion con) {
+		Usuario usuAux = null;
+				
+		String query = "SELECT * FROM usuarios "
+				+ "WHERE login = ? AND password = AES_ENCRYPT(?, ?)";
+		
+		try {
+			PreparedStatement ps = con.getConector().prepareStatement(query);
+			
+			ps.setString(1, usuario);
+			ps.setString(2, password);
+			ps.setString(3, clave);
+			
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				usuAux = new Usuario(rs.getString("login"), 
+									rs.getString("password"), 
+									rs.getString("nombre"), 
+									rs.getString("email"), 
+									rs.getInt("tipo"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return usuAux;
+	}
+
 }
