@@ -1,4 +1,5 @@
 <!doctype html>
+<%@page import="es.iestriana.bean.Conexion"%>
 <%@page import="es.iestriana.bean.Usuario"%>
 <html lang="es">
   <head>
@@ -13,6 +14,20 @@
   </head>
   <body>
 	<div class="container">
+		<%
+		if (session.getAttribute("usuarioWeb") == null || session.isNew()) {
+			response.sendRedirect("../index.jsp?mensaje=Error de sesión");
+		} else {
+			ServletContext sc = getServletContext();
+			String usu = sc.getInitParameter("usuario");
+			String pass = sc.getInitParameter("password");
+			String bd = sc.getInitParameter("database");
+			String driver = sc.getInitParameter("driver");
+			
+			Conexion con = new Conexion(usu, pass, bd, driver);
+		}
+		
+		%>
 		<div class="row">
 			<div class="col">
 				<span>Hola <%=((Usuario)session.getAttribute("usuarioWeb")).getNombre() %></span>
