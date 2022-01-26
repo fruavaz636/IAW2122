@@ -1,4 +1,8 @@
 <!doctype html>
+<%@page import="es.iestriana.bean.Libro"%>
+<%@page import="java.util.List"%>
+<%@page import="es.iestriana.dao.LibroDAOBD"%>
+<%@page import="es.iestriana.dao.LibroDAO"%>
 <%@page import="es.iestriana.bean.Conexion"%>
 <%@page import="es.iestriana.bean.Usuario"%>
 <html lang="es">
@@ -25,14 +29,27 @@
 			String driver = sc.getInitParameter("driver");
 			
 			Conexion con = new Conexion(usu, pass, bd, driver);
-		}
-		
+			
+			LibroDAO lDAO = new LibroDAOBD();
+			List<Libro> libros = lDAO.listarLibros(con, (Usuario)session.getAttribute("usuarioWeb"));			
 		%>
-		<div class="row">
+		
+		<div class="row mt-2">
 			<div class="col">
-				<span>Hola <%=((Usuario)session.getAttribute("usuarioWeb")).getNombre() %></span>
+				<span></span>
+				<nav aria-label="breadcrumb">
+				  <ol class="breadcrumb">
+				    <li class="breadcrumb-item">Hola <%=((Usuario)session.getAttribute("usuarioWeb")).getNombre() %></li>
+				    <li class="breadcrumb-item active" aria-current="page">Principal</li>
+				    <li class="breadcrumb-item"><a href="#">Cerrar Sesión</a></li>
+				  </ol>
+				</nav>
 			</div>
 		</div>
+		
+		<%
+		}		
+		%>
 	</div>
 	
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
