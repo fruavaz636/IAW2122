@@ -72,7 +72,8 @@ public class UsuarioDAOBD implements UsuarioDAO {
 			
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				usuAux = new Usuario(rs.getString("login"), 
+				usuAux = new Usuario(rs.getInt("idUsuario"),
+									rs.getString("login"), 
 									rs.getString("password"), 
 									rs.getString("nombre"), 
 									rs.getString("email"), 

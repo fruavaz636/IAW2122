@@ -86,9 +86,8 @@ public class Libro implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Libro [idLibro=" + idLibro + ", titulo=" + titulo + ", autor=" + autor + ", isbn=" + isbn + ", portada="
-				+ Arrays.toString(portada) + ", idUsuario=" + idUsuario + ", uuid=" + uuid + "]";
-	}
-	
+		return "Libro [idLibro=" + idLibro + ", titulo=" + titulo + ", autor=" + autor + ", isbn=" + isbn
+				+ ", idUsuario=" + idUsuario + ", uuid=" + uuid + "]";
+	}	
 	
 }

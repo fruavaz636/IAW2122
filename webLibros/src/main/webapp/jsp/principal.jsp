@@ -31,7 +31,10 @@
 			Conexion con = new Conexion(usu, pass, bd, driver);
 			
 			LibroDAO lDAO = new LibroDAOBD();
-			List<Libro> libros = lDAO.listarLibros(con, (Usuario)session.getAttribute("usuarioWeb"));			
+			List<Libro> libros = lDAO.listarLibros(con, (Usuario)session.getAttribute("usuarioWeb"));
+			for(Libro aux: libros) {
+				out.print(aux);
+			}
 		%>
 		
 		<div class="row mt-2">
@@ -45,6 +48,10 @@
 				  </ol>
 				</nav>
 			</div>
+		</div>
+		
+		<div class="row mt-2">
+			
 		</div>
 		
 		<%
