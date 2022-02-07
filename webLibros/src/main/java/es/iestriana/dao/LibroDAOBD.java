@@ -43,4 +43,27 @@ public class LibroDAOBD implements LibroDAO {
 		return libros;
 	}
 
+	@Override
+	public byte[] obtenerPortada(int idLibro, Conexion c) {
+		byte[]portada = null;
+		
+		String query = "SELECT portada FROM libros WHERE idLibro = ?";
+		
+		try {
+			PreparedStatement ps = c.getConector().prepareStatement(query);
+			ps.setInt(1, idLibro);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				portada = rs.getBytes("portada");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return portada;
+	}
+
 }

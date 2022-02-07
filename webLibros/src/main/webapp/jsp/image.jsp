@@ -1,3 +1,4 @@
+<%@page import="es.iestriana.bean.Conexion"%>
 <%@page import="java.io.OutputStream"%>
 <%@page import="es.iestriana.dao.LibroDAOBD"%>
 <%@page import="es.iestriana.dao.LibroDAO"%>
