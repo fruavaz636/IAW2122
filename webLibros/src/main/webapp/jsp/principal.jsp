@@ -52,11 +52,11 @@
 			for(Libro aux: libros) {
 			%>
 				<div class="card" style="margin: 10px">
-					<img alt="Libro" src="" class="card-img-top" style="width: 300px;height: 100px">
+					<img alt="Libro" src="image.jsp?idLibro=<%=aux.getIdLibro() %>" class="card-img-top" style="width: 300px;height: 100px">
 					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<p class="card-text"></p>
-						<p class="card-text"></p>
+						<h5 class="card-title"><%=aux.getTitulo() %></h5>
+						<p class="card-text"><%=aux.getAutor() %></p>
+						<p class="card-text"><%=aux.getIsbn() %></p>
 						<button type="button" class="btn btn-secondary">Actualizar</button>
 						<button type="button" class="btn btn-warning">Borrar</button>
 					</div>

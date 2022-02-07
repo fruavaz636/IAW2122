@@ -14,7 +14,6 @@ public class LibroDAOBD implements LibroDAO {
 
 	@Override
 	public List<Libro> listarLibros(Conexion c, Usuario u) {
-		System.out.println(u.getIdUsuario());
 		List<Libro> libros = new ArrayList<Libro>();		
 		
 		String query = "SELECT * FROM libros WHERE idUsuario = ?";
@@ -35,7 +34,6 @@ public class LibroDAOBD implements LibroDAO {
 						rs.getString("uuid"));
 				
 				libros.add(auxiliar);
-				System.out.println(auxiliar);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
