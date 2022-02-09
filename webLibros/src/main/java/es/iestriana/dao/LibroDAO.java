@@ -11,4 +11,6 @@ public interface LibroDAO {
 	public List<Libro> listarLibros(Conexion c, Usuario u);
 	
 	public byte[] obtenerPortada(int idLibro, Conexion c);
+	
+	public int borrarLibro(Conexion c, String uuid);
 }

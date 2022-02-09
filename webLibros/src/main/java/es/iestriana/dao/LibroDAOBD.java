@@ -66,4 +66,23 @@ public class LibroDAOBD implements LibroDAO {
 		return portada;
 	}
 
+	@Override
+	public int borrarLibro(Conexion c, String uuid) {
+		int cuantos = 0;
+		
+		String sql = "DELETE FROM libros WHERE uuid = ?";
+		
+		try {
+			PreparedStatement ps = c.getConector().prepareStatement(sql);
+			ps.setString(1, uuid);
+			
+			cuantos = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return cuantos;
+	}
+
 }
