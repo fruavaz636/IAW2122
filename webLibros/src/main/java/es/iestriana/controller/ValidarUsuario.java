@@ -53,7 +53,7 @@ public class ValidarUsuario extends HttpServlet {
 		UsuarioDAO uDAO = new UsuarioDAOBD();
 		
 		Usuario usuWeb = uDAO.comprobarUsuario(usuario, password, con);
-		System.out.println(usuWeb);
+		
 		// Comprobar la validez del usuario
 		if (usuWeb != null) {
 			// Poner al usuario en Sesión

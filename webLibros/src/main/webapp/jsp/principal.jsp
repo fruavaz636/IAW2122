@@ -59,7 +59,27 @@
 							<p class="card-text"><%=aux.getAutor() %></p>
 							<p class="card-text"><%=aux.getIsbn() %></p>
 							<button type="button" class="btn btn-secondary">Actualizar</button>
-							<button type="button" class="btn btn-warning">Borrar</button>
+							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarLibro<%=aux.getIdLibro()%>">Borrar</button>
+							
+							<!-- Modal -->
+							<div class="modal fade" id="borrarLibro<%=aux.getIdLibro()%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">Borrar Libro</h5>
+							        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							      </div>
+							      <div class="modal-body">
+							        <span>¿Desea borrar el libro "<%=aux.getTitulo() %>"?</span>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+							        <button type="button" class="btn btn-primary" onclick="location.href='../BorrarLibro?uuid=<%=aux.getUuid()%>'">Sí</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+
 						</div>
 					</div>
 				</div>
