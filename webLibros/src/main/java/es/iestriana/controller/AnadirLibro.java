@@ -1,13 +1,12 @@
 package es.iestriana.controller;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
-import java.awt.*;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+
+import es.iestriana.bean.Conexion;
+import es.iestriana.bean.Libro;
 import es.iestriana.bean.Usuario;
+import es.iestriana.dao.LibroDAO;
+import es.iestriana.dao.LibroDAOBD;
 
 /**
  * Servlet implementation class AnadirLibro
@@ -56,19 +61,44 @@ public class AnadirLibro extends HttpServlet {
 		Part fichero = request.getPart("portada");
 		InputStream inputS = null;
 		ByteArrayOutputStream bos = null;
+		byte[] res = null;
 		if (!getFileName(fichero).equals("")) {
 			inputS = fichero.getInputStream();
 			
 			// Escalar Imagen
-			BufferedImage imageBuffer = ImageIO.read(inputS);
+			/*BufferedImage imageBuffer = ImageIO.read(inputS);
 			Image tmp = imageBuffer.getScaledInstance(640, 640, BufferedImage.SCALE_FAST);
 			BufferedImage buffered = new BufferedImage(640, 640, BufferedImage.TYPE_INT_RGB);
 			buffered.getGraphics().drawImage(tmp, 0, 0, null);
 					
 			bos = new ByteArrayOutputStream();
 			ImageIO.write(buffered, "jpg", bos);
+			res = bos.toByteArray();*/
 			
+			
+			bos = new ByteArrayOutputStream();
+			byte[] buffer = new byte[1024];
+			while (true) {
+			    int r = inputS.read(buffer);
+			    if (r == -1) break;
+			    bos.write(buffer, 0, r);
+			}
+			res = bos.toByteArray();			
 		}
+		
+		Libro lb = new Libro(titulo, autor, isbn, res, idUsuario, uuid);
+		
+		LibroDAO lDAO = new LibroDAOBD();
+		
+		ServletContext sc = getServletContext();
+		String usu = sc.getInitParameter("usuario");
+		String pass = sc.getInitParameter("password");
+		String bd = sc.getInitParameter("database");
+		String driver = sc.getInitParameter("driver");
+		
+		Conexion con = new Conexion(usu, pass, bd, driver);
+		
+		lDAO.insertarLibro(con, lb);
 	}
 
 	private Object getFileName(Part fichero) {

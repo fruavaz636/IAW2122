@@ -13,4 +13,6 @@ public interface LibroDAO {
 	public byte[] obtenerPortada(int idLibro, Conexion c);
 	
 	public int borrarLibro(Conexion c, String uuid);
+
+	public void insertarLibro(Conexion con, Libro lb);
 }

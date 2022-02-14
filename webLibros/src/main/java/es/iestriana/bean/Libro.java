@@ -8,7 +8,7 @@ public class Libro implements Serializable{
 	private int idLibro;
 	private String titulo;
 	private String autor;
-	private String isbn;
+	private int isbn;
 	private byte[] portada;
 	private int idUsuario;
 	private String uuid;
@@ -17,9 +17,19 @@ public class Libro implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Libro(int idLibro, String titulo, String autor, String isbn, byte[] portada, int idUsuario, String uuid) {
+	public Libro(int idLibro, String titulo, String autor, int isbn, byte[] portada, int idUsuario, String uuid) {
 		super();
 		this.idLibro = idLibro;
+		this.titulo = titulo;
+		this.autor = autor;
+		this.isbn = isbn;
+		this.portada = portada;
+		this.idUsuario = idUsuario;
+		this.uuid = uuid;
+	}
+
+	public Libro(String titulo, String autor, int isbn, byte[] portada, int idUsuario, String uuid) {
+		super();
 		this.titulo = titulo;
 		this.autor = autor;
 		this.isbn = isbn;
@@ -52,11 +62,11 @@ public class Libro implements Serializable{
 		this.autor = autor;
 	}
 
-	public String getIsbn() {
+	public int getIsbn() {
 		return isbn;
 	}
 
-	public void setIsbn(String isbn) {
+	public void setIsbn(int isbn) {
 		this.isbn = isbn;
 	}
 

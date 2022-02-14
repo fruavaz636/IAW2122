@@ -28,7 +28,7 @@ public class LibroDAOBD implements LibroDAO {
 				Libro auxiliar = new Libro(rs.getInt("idLibro"), 
 						rs.getString("titulo"), 
 						rs.getString("autor"), 
-						rs.getString("isbn"), 
+						rs.getInt("isbn"), 
 						rs.getBytes("portada"), 
 						rs.getInt("idUsuario"), 
 						rs.getString("uuid"));
@@ -83,6 +83,26 @@ public class LibroDAOBD implements LibroDAO {
 		}
 		
 		return cuantos;
+	}
+
+	@Override
+	public void insertarLibro(Conexion con, Libro lb) {
+		String sql = "INSERT INTO libros VALUES (null, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			PreparedStatement ps = con.getConector().prepareStatement(sql);
+			ps.setString(1, lb.getTitulo());
+			ps.setString(1, lb.getAutor());
+			ps.setInt(1, lb.getIsbn());
+			ps.setBytes(1, lb.getPortada());
+			ps.setInt(1, lb.getIdUsuario());
+			ps.setString(1, lb.getUuid());
+			
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
