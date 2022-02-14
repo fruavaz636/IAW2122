@@ -41,9 +41,15 @@
 				  <ol class="breadcrumb">
 				    <li class="breadcrumb-item">Hola <%=((Usuario)session.getAttribute("usuarioWeb")).getNombre() %></li>
 				    <li class="breadcrumb-item active" aria-current="page">Principal</li>
-				    <li class="breadcrumb-item"><a href="#">Cerrar Sesión</a></li>
+				    <li class="breadcrumb-item"><a href="../CerrarSesion">Cerrar Sesión</a></li>
 				  </ol>
 				</nav>
+			</div>
+		</div>
+		
+		<div class="row mt-2">
+			<div class="col-2">
+				<a class="btn btn-primary btn-xs btn-block" href="anadirLibro.jsp">AÑADIR LIBRO</a>
 			</div>
 		</div>
 		
