@@ -15,4 +15,8 @@ public interface LibroDAO {
 	public int borrarLibro(Conexion c, String uuid);
 
 	public void insertarLibro(Conexion con, Libro lb);
+	
+	public Libro obtenerLibro(Conexion con, String uuid);
+
+	public void actualizarLibro(Conexion con, Libro lb);
 }

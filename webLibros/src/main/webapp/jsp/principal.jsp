@@ -64,7 +64,7 @@
 							<h5 class="card-title"><%=aux.getTitulo() %></h5>
 							<p class="card-text"><%=aux.getAutor() %></p>
 							<p class="card-text"><%=aux.getIsbn() %></p>
-							<button type="button" class="btn btn-secondary">Actualizar</button>
+							<button type="button" class="btn btn-secondary" onclick="location.href='editarLibro.jsp?uuid=<%=aux.getUuid()%>'">Actualizar</button>
 							<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarLibro<%=aux.getIdLibro()%>">Borrar</button>
 							
 							<!-- Modal -->

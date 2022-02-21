@@ -92,12 +92,66 @@ public class LibroDAOBD implements LibroDAO {
 		try {
 			PreparedStatement ps = con.getConector().prepareStatement(sql);
 			ps.setString(1, lb.getTitulo());
-			ps.setString(1, lb.getAutor());
-			ps.setInt(1, lb.getIsbn());
-			ps.setBytes(1, lb.getPortada());
-			ps.setInt(1, lb.getIdUsuario());
-			ps.setString(1, lb.getUuid());
+			ps.setString(2, lb.getAutor());
+			ps.setInt(3, lb.getIsbn());
+			ps.setBytes(4, lb.getPortada());
+			ps.setInt(5, lb.getIdUsuario());
+			ps.setString(6, lb.getUuid());
 			
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Libro obtenerLibro(Conexion con, String uuid) {
+		Libro aux = null;
+		
+		String query = "SELECT * FROM libros WHERE uuid = ?";
+		
+		try {
+			PreparedStatement ps = con.getConector().prepareStatement(query);
+			ps.setString(1, uuid);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				aux = new Libro(rs.getInt("idLibro"), rs.getString("titulo"), 
+						rs.getString("autor"), rs.getInt("isbn"), 
+						rs.getBytes("portada"), rs.getInt("idUsuario"), rs.getString("uuid"));				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return aux;
+	}
+
+	@Override
+	public void actualizarLibro(Conexion con, Libro lb) {	
+		try {
+			PreparedStatement ps = null;
+			if (lb.getPortada() != null) {
+				String sql = "UPDATE libros SET titulo=?,autor=?,isbn=?,portada=? WHERE uuid=?";
+				
+				ps = con.getConector().prepareStatement(sql);
+				ps.setString(1, lb.getTitulo());
+				ps.setString(2, lb.getAutor());
+				ps.setInt(3, lb.getIsbn());
+				ps.setBytes(4, lb.getPortada());			
+				ps.setString(5, lb.getUuid());
+			} else {
+				String sql = "UPDATE libros SET titulo=?,autor=?,isbn=? WHERE uuid=?";
+				
+				ps = con.getConector().prepareStatement(sql);
+				ps.setString(1, lb.getTitulo());
+				ps.setString(2, lb.getAutor());
+				ps.setInt(3, lb.getIsbn());
+				ps.setString(4, lb.getUuid());
+			}					
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -15,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-
 import es.iestriana.bean.Conexion;
 import es.iestriana.bean.Libro;
 import es.iestriana.bean.Usuario;
@@ -24,16 +21,16 @@ import es.iestriana.dao.LibroDAO;
 import es.iestriana.dao.LibroDAOBD;
 
 /**
- * Servlet implementation class AnadirLibro
+ * Servlet implementation class EditarLibro
  */
 @MultipartConfig
-public class AnadirLibro extends HttpServlet {
+public class EditarLibro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AnadirLibro() {
+    public EditarLibro() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,7 +39,8 @@ public class AnadirLibro extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -52,7 +50,7 @@ public class AnadirLibro extends HttpServlet {
 		String titulo = request.getParameter("titulo");
 		String autor = request.getParameter("autor");
 		int isbn = Integer.parseInt(request.getParameter("isbn"));
-		String uuid = UUID.randomUUID().toString();
+		String uuid = request.getParameter("uuid");
 		
 		HttpSession sesion = request.getSession();
 		int idUsuario = ((Usuario)sesion.getAttribute("usuarioWeb")).getIdUsuario();
@@ -62,6 +60,9 @@ public class AnadirLibro extends HttpServlet {
 		InputStream inputS = null;
 		ByteArrayOutputStream bos = null;
 		byte[] res = null;
+		
+		Libro lb = null;
+		
 		if (!getFileName(fichero).equals("")) {
 			inputS = fichero.getInputStream();
 			
@@ -83,10 +84,14 @@ public class AnadirLibro extends HttpServlet {
 			    if (r == -1) break;
 			    bos.write(buffer, 0, r);
 			}
-			res = bos.toByteArray();			
+			res = bos.toByteArray();
+			
+			lb = new Libro(titulo, autor, isbn, res, idUsuario, uuid);
+		} else {
+			lb = new Libro(titulo, autor, isbn, null, idUsuario, uuid);
 		}
 		
-		Libro lb = new Libro(titulo, autor, isbn, res, idUsuario, uuid);
+		
 		
 		LibroDAO lDAO = new LibroDAOBD();
 		
@@ -98,11 +103,11 @@ public class AnadirLibro extends HttpServlet {
 		
 		Conexion con = new Conexion(usu, pass, bd, driver);
 		
-		lDAO.insertarLibro(con, lb);
+		lDAO.actualizarLibro(con, lb);
 		
 		response.sendRedirect("jsp/principal.jsp");
 	}
-
+	
 	private Object getFileName(Part fichero) {
 		for (String c : fichero.getHeader("content-disposition").split(";")) {
 			if (c.trim().startsWith("filename")) {
